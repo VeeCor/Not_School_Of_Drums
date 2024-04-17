@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".Activity_login">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_small"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/login_LinearLayout"
+        android:scaleType="fitStart"
+        android:minHeight="30dp"
+        android:maxHeight="20dp"
+        android:contentDescription="@string/image" />
+
+
+    <LinearLayout
+        android:id="@+id/login_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/login_I_am"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_I_am"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:layout_marginBottom="25dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/teacher_button"
+            android:background="@drawable/corner_background"
+            android:text="@string/login_student"
+            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:layout_marginHorizontal="40dp"
+            android:paddingVertical="12dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/admin_button"
+            android:background="@drawable/corner_background"
+            android:text="@string/login_teacher"
+            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:layout_marginHorizontal="40dp"
+            android:paddingVertical="12dp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/manager_button"
+            android:background="@drawable/corner_background"
+            android:text="@string/login_admin"
+            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:layout_marginHorizontal="40dp"
+            android:paddingVertical="12dp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/student_button"
+            android:background="@drawable/corner_background"
+            android:text="@string/login_manager"
+            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:layout_marginHorizontal="40dp"
+            android:paddingVertical="12dp"
+            android:layout_marginTop="15dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

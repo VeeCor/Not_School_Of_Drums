@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "279833676764",
+    "project_id": "notsod-db",
+    "storage_bucket": "notsod-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279833676764:android:67fa722118fe793fe21d19",
+        "android_client_info": {
+          "package_name": "com.example.notschoolofdrums"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPmV_-RPu5pREu562eAVZ5KwJYUzGe36E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

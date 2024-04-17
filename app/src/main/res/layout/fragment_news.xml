@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.News">
+
+    <androidx.appcompat.widget.Toolbar
+        style="@style/Toolbar"
+        android:id="@+id/news_toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:title="@string/title_news"
+        app:titleTextAppearance="@style/Toolbar.Text"
+        app:navigationIcon="@drawable/menu"
+        app:menu="@menu/news_menu">
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/news_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/Background">
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

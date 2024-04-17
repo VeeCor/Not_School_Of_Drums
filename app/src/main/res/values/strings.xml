@@ -1,0 +1,47 @@
+<resources xml:lang="">
+
+    <string name="app_name">НШБ</string>
+    <string name="title_news">Новости</string>
+    <string name="title_notification">Уведомления</string>
+    <string name="title_entry">Записи</string>
+    <string name="title_new_entry">Новая запись</string>
+    <string name="title_messages">Сообщения</string>
+    <string name="title_add">Добавить</string>
+    <string name="title_new_message">Новое сообщение</string>
+    <string name="image">Изображение</string>
+    <string name="lesson">Занятие</string>
+    <string name="repetition">Репетиция</string>
+    <string name="level">Ступень</string>
+    <string name="teacher">Преподаватель:</string>
+    <string name="classroom">Класс:</string>
+    <string name="consist">Состав:</string>
+    <string name="photo">Фото</string>
+    <string name="consist_value_group">Группа</string>
+    <string name="consist_value_alone">Индивидуально</string>
+    <string name="my_entries">Мои записи</string>
+    <string name="history">История</string>
+    <string name="next_title">Далее</string>
+    <string name="new_entry_button_title">Записаться</string>
+    <string name="title_chose_entry">Куда вы хотите записаться?</string>
+    <string name="login_student">Ученик</string>
+    <string name="login_teacher">Преподаватель</string>
+    <string name="login_admin">Администратор</string>
+    <string name="login_manager">Менеджер</string>
+    <string name="login_I_am">Я...</string>
+
+
+
+    <string name="date_simple">08 января 2000</string>
+    <string name="time_simple">Понедельник в 15:00</string>
+    <string name="teacher_simple">Имя Фамилия</string>
+    <string name="datetime">01.01.2000 21:11</string>
+    <string name="news_text">Текст поста</string>
+    <string name="simp">Other many west partiality who laughter to my past voice held sweetness.</string>
+    <string name="simple">Hour eagerness his scarcely.
+        Taken green newspaper followed might party things settled vexed have beyond quick talked.
+        Promotion understood who numerous dissimilar returned forth almost.
+        Other many west partiality who laughter to my past voice held sweetness.
+        Strangers draw taken feelings may prevent prepared though to entire repeated within fine assure sportsman square age.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

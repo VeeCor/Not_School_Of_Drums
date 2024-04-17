@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/back_new_entry"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true">
+
+    <TextView
+        android:id="@+id/question_text_chose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_chose_entry"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_lesson_chose"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/question_text_chose"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/lesson"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/photo_group4"
+            android:foreground="@color/card_not_chosen_foreground_alpha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lesson"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_repetition_chose"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/card_lesson_chose"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/lesson"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/photo_individually"
+            android:foreground="@color/card_not_chosen_foreground_alpha"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/repetition"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        style="@style/Toolbar"
+        android:id="@+id/new_entry_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text="@string/next_title"
+        android:textSize="23sp"
+        android:textAppearance="@style/ButtonAdd.Text"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

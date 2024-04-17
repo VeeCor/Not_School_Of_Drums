@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_teacher"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_teacher_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp">
+
+            <ImageView
+                android:id="@+id/teacher_photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:cropToPadding="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/no_photo"
+                android:contentDescription="@string/photo"
+                android:background="@color/bottom_not_active"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/teacher_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teacher_simple"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="start"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
