@@ -23,7 +23,7 @@ public class Launcher_activity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(Launcher_activity.this, MainActivity.class);
+                Intent intent = new Intent(Launcher_activity.this, Activity_login.class);
                 startActivity(intent);
                 finish();
             }

@@ -7,84 +7,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".Activity_login">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_small"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/login_LinearLayout"
-        android:scaleType="fitStart"
-        android:minHeight="30dp"
-        android:maxHeight="20dp"
-        android:contentDescription="@string/image" />
-
+    tools:context=".Activity.Activity_login">
 
     <LinearLayout
-        android:id="@+id/login_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        tools:ignore="UselessParent">
+        android:id="@+id/logo_Linear"
+        android:orientation="horizontal"
+        android:layout_above="@+id/login_frame"
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:id="@+id/login_I_am"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_I_am"
-            android:textColor="@color/white"
-            android:textSize="35sp"
-            android:fontFamily="@font/roboto_bold"
-            android:gravity="center"
-            android:layout_marginBottom="25dp"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/logo_small"
+            android:scaleType="fitStart"
+            android:minHeight="30dp"
+            android:maxHeight="20dp"
+            android:contentDescription="@string/image"/>
 
-        <Button
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/teacher_button"
-            android:background="@drawable/corner_background"
-            android:text="@string/login_student"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
-            android:layout_marginHorizontal="40dp"
-            android:paddingVertical="12dp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/admin_button"
-            android:background="@drawable/corner_background"
-            android:text="@string/login_teacher"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
-            android:layout_marginHorizontal="40dp"
-            android:paddingVertical="12dp"
-            android:layout_marginTop="15dp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/manager_button"
-            android:background="@drawable/corner_background"
-            android:text="@string/login_admin"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
-            android:layout_marginHorizontal="40dp"
-            android:paddingVertical="12dp"
-            android:layout_marginTop="15dp"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/student_button"
-            android:background="@drawable/corner_background"
-            android:text="@string/login_manager"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
-            android:layout_marginHorizontal="40dp"
-            android:paddingVertical="12dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_frame"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/Back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/back_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:drawableStart="@drawable/baseline_arrow_back"
+        />
+
 
 </RelativeLayout>

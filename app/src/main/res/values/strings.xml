@@ -28,7 +28,10 @@
     <string name="login_admin">Администратор</string>
     <string name="login_manager">Менеджер</string>
     <string name="login_I_am">Я...</string>
-
+    <string name="password">Пароль</string>
+    <string name="login">Логин</string>
+    <string name="entry">Войти</string>
+    <string name="back_button">Назад</string>
 
 
     <string name="date_simple">08 января 2000</string>
