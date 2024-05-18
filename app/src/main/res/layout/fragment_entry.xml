@@ -7,48 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Entry">
 
-    <androidx.appcompat.widget.Toolbar
-        style="@style/Toolbar"
-        android:id="@+id/new_entry_toolbar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:title="@string/title_entry"
-        app:titleTextAppearance="@style/Toolbar.Text"
-        app:navigationIcon="@drawable/menu"
-        app:menu="@menu/plus_menu">
-    </androidx.appcompat.widget.Toolbar>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/new_entry_toolbar"
+        android:layout_alignParentTop="true"
         app:tabTextAppearance="@style/TabLayout.Text"
-        app:tabBackground="@drawable/on_tab_layout"
-        app:tabIndicatorColor="@color/white">
-
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/my_entries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/my_entries_item"
-            android:text="@string/history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-    </com.google.android.material.tabs.TabLayout>
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="@color/black" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/history_item"
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/tab_layout"
-        android:layout_below="@+id/new_entry_toolbar"
-        />
+        android:layout_below="@+id/tab_layout"/>
 
 </RelativeLayout>

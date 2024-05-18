@@ -2,65 +2,75 @@ package com.example.notschoolofdrums.Fragments;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
+import com.example.notschoolofdrums.Activity.Add_Entry;
 import com.example.notschoolofdrums.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Add_Entry_step1#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class Add_Entry_step1 extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Add_Entry_step1() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Add_Entry_step1.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Add_Entry_step1 newInstance(String param1, String param2) {
-        Add_Entry_step1 fragment = new Add_Entry_step1();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    CardView lesson, repetition;
+    FrameLayout less, rep;
+    Button next;
+    int isChecked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add__entry_step1, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_add__entry_step1, container, false);
+        lesson = view.findViewById(R.id.card_lesson_chose);
+        repetition = view.findViewById(R.id.card_repetition_chose);
+        next = view.findViewById(R.id.next_button);
+        less = lesson.findViewById(R.id.less_frame);
+        rep = repetition.findViewById(R.id.rep_frame);
+
+        lesson.setOnClickListener(v -> {
+            isChecked = 1;
+            ChangeAlpha(isChecked);
+        });
+
+        repetition.setOnClickListener(v -> {
+            isChecked = 2;
+            ChangeAlpha(isChecked);
+        });
+
+        next.setOnClickListener(v -> ChangeFragment());
+
+        return view;
+    }
+
+    private void ChangeFragment() {
+        FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
+        if (isChecked == 1){
+            ft.replace(R.id.frame_for_fragments_add_entry, new add_lesson_entry());
+            ((Add_Entry) requireActivity()).setToolbarTitle(getString(R.string.lesson));
+        } else if (isChecked == 2) {
+            ft.replace(R.id.frame_for_fragments_add_entry, new add_repetition_entry());
+            ((Add_Entry) requireActivity()).setToolbarTitle(getString(R.string.repetition));
+        }
+        ft.addToBackStack(null).commit();
+    }
+
+    private void ChangeAlpha(int isChecked) {
+        if(isChecked == 1){
+            less.setBackgroundResource(R.color.card_chosen_foreground_alpha);
+            rep.setBackgroundResource(R.color.card_not_chosen_foreground_alpha);
+            lesson.setCardElevation(30);
+            repetition.setCardElevation(0);
+        }else if (isChecked == 2){
+            rep.setBackgroundResource(R.color.card_chosen_foreground_alpha);
+            less.setBackgroundResource(R.color.card_not_chosen_foreground_alpha);
+            repetition.setCardElevation(30);
+            lesson.setCardElevation(0);
+        }
     }
 }

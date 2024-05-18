@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/log_choice">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.notschoolofdrums.Fragments.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/log_choice"
+        android:name="com.example.notschoolofdrums.Fragments.Log_choice"
+        android:label="fragment_log_choice"
+        tools:layout="@layout/fragment_log_choice" >
+        <action
+            android:id="@+id/action_log_choice_to_login"
+            app:destination="@id/login" />
+    </fragment>
+</navigation>

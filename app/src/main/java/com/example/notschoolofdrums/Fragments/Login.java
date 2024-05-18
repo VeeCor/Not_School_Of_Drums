@@ -1,66 +1,113 @@
 package com.example.notschoolofdrums.Fragments;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Rect;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.notschoolofdrums.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Login#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Objects;
+
+
 public class Login extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Login() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Login.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Login newInstance(String param1, String param2) {
-        Login fragment = new Login();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    String login, password;
+    Button entry;
+    TextInputLayout loginInput, passwordInput;
+    TextInputEditText loginEditText, passwordEditText;
+    private OnEntryButtonClickListener listener;
+    FirebaseAuth fAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        Animation slideInLeftAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.scale_slide_in_from_right);
+        view.startAnimation(slideInLeftAnimation);
+
+        loginInput = view.findViewById(R.id.login_log_input);
+        passwordInput = view.findViewById(R.id.login_password_input);
+        loginEditText = view.findViewById(R.id.login_log_editText);
+        passwordEditText = view.findViewById(R.id.login_password_editText);
+
+        fAuth = FirebaseAuth.getInstance();
+
+        passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                passwordEditText.clearFocus();
+            }
+            return false;
+        });
+
+        return view;
     }
+
+    public interface OnEntryButtonClickListener {
+        void onEntryButtonClick(String login, String password);
+        void setButtonVisibility(boolean isVisible);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnEntryButtonClickListener) {
+            listener = (OnEntryButtonClickListener) context;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (listener != null) {
+            listener.setButtonVisibility(true);
+        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        entry = view.findViewById(R.id.entry_button);
+        entry.setOnClickListener(v -> {
+            login = Objects.requireNonNull(loginEditText.getText()).toString();
+            password = Objects.requireNonNull(passwordEditText.getText()).toString();
+            if(TextUtils.isEmpty(login) || TextUtils.isEmpty(password)){
+                singInError();
+            } else if (listener != null) {
+                    listener.onEntryButtonClick(login, password);
+            }
+
+        });
+
+    }
+
+    private void singInError (){
+        passwordInput.setHelperText(getString(R.string.error_login_password));
+        passwordInput.setHelperTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.error_red)));
+    }
+
 }

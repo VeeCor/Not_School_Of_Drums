@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/header_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    tools:context=".Fragments.HeadDrawer">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/profile_logo_Linear"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="5dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo_small"
+            android:scaleType="fitStart"
+            android:minHeight="30dp"
+            android:maxHeight="20dp"
+            android:contentDescription="@string/image"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/login_line_corner"
+        android:layout_below="@+id/profile_logo_Linear"/>
+
+    <LinearLayout
+        android:id="@+id/profile_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/frame_line"
+        android:gravity="center"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:id="@+id/photo_profile_drawer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/image"
+                android:src="@drawable/no_photo"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/username_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/teacher_simple"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="start"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/login_line_corner"
+        android:layout_below="@+id/profile_linear"/>
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/news2">
+
+    <fragment
+        android:id="@+id/news2"
+        android:name="com.example.notschoolofdrums.Fragments.News"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/entry2"
+        android:name="com.example.notschoolofdrums.Fragments.Entry"
+        android:label="fragment_entry"
+        tools:layout="@layout/fragment_entry" >
+        <action
+            android:id="@+id/action_entry2_to_navigation2"
+            app:destination="@id/navigation2" />
+    </fragment>
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/history_entry">
+        <fragment
+            android:id="@+id/history_entry"
+            android:name="com.example.notschoolofdrums.Fragments.History_entry"
+            android:label="fragment_history_entry"
+            tools:layout="@layout/fragment_history_entry" />
+        <fragment
+            android:id="@+id/activity_entry"
+            android:name="com.example.notschoolofdrums.Fragments.Activity_entry"
+            android:label="fragment_my_entry"
+            tools:layout="@layout/fragment_my_entry" />
+    </navigation>
+</navigation>

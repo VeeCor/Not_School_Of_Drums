@@ -2,12 +2,10 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".Activity.Activity_login">
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,21 +26,22 @@
             android:contentDescription="@string/image"/>
 
         <FrameLayout
+            android:id="@+id/for_design"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
     </LinearLayout>
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/login_frame"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_frame"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/navigation_login"
         android:layout_centerInParent="true"
-        android:gravity="center">
-
-
-    </FrameLayout>
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/Back_button"
@@ -58,8 +57,6 @@
         android:textAllCaps="false"
         android:layout_marginBottom="20dp"
         android:layout_marginStart="20dp"
-        android:drawableStart="@drawable/baseline_arrow_back"
-        />
-
+        android:drawableStart="@drawable/baseline_arrow_back" />
 
 </RelativeLayout>

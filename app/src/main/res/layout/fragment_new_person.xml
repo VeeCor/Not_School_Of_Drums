@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".Fragments.NewPerson">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_type_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/account_type"
+            android:labelFor="@id/autocomplete_input"
+            style="@style/InputDropDownStyle">
+
+            <AutoCompleteTextView
+                android:id="@+id/autocomplete_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profession_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/profession"
+            android:labelFor="@id/autocomplete_input"
+            android:visibility="gone"
+            style="@style/InputDropDownStyle">
+
+            <AutoCompleteTextView
+                android:id="@+id/profession_auto_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/last_name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/account_text"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/last_name_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/account_text"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/surname_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/surname"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/account_text"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/surname_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPersonName"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/birthday_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/birth_date"
+            android:labelFor="@id/birthday_input"
+            app:endIconDrawable="@drawable/baseline_calendar_month_24"
+            app:endIconMode="custom"
+            style="@style/InputDropDownStyle">
+
+        <AutoCompleteTextView
+            android:id="@+id/birthday_auto_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="date"
+            android:maxLength="10"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/gender_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/gender"
+            android:labelFor="@id/gender_auto_input"
+            style="@style/InputDropDownStyle">
+
+            <AutoCompleteTextView
+                android:id="@+id/gender_auto_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            app:prefixText="+7"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/number_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="phone"
+                android:maxLength="10"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/account_text"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textEmailAddress"
+                android:lines="1"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_person_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="@string/title_add"
+            android:textSize="23sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:background="@color/black"
+            android:textAppearance="@style/ButtonAdd.Text"/>
+
+    </LinearLayout>
+
+</ScrollView>

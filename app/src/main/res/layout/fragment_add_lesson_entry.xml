@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".Fragments.add_lesson_entry">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp"
+            android:paddingTop="15dp"
+            android:paddingHorizontal="15dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/consist_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/account_text"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/consist_input"
+                android:labelFor="@id/consist_auto_input"
+                style="@style/InputDropDownStyle">
+
+                <AutoCompleteTextView
+                    android:id="@+id/consist_auto_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:inputType="none"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/teacher_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/account_text"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/login_teacher"
+                android:labelFor="@id/teacher_auto_input"
+                style="@style/InputDropDownStyle">
+
+                <AutoCompleteTextView
+                    android:id="@+id/teacher_auto_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:inputType="none"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/account_text"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/date"
+                android:labelFor="@id/date_auto_input"
+                app:endIconDrawable="@drawable/baseline_calendar_month_24"
+                app:endIconMode="custom"
+                style="@style/InputDropDownStyle">
+
+                <AutoCompleteTextView
+                    android:id="@+id/date_auto_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:inputType="date"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/account_text"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/time"
+                android:labelFor="@id/time_auto_input"
+                style="@style/InputDropDownStyle">
+
+                <AutoCompleteTextView
+                    android:id="@+id/time_auto_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:inputType="none"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:text="@string/new_entry_button_title"
+        android:textSize="23sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@color/black"
+        android:textAppearance="@style/ButtonAdd.Text"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

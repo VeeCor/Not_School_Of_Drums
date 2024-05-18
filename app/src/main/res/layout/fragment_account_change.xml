@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    tools:context=".Fragments.Account_change">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/back_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/back_button_underlined"
+                    android:textColor="@color/account_text"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="start"
+                    android:paddingTop="10dp"/>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/correct_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ready"
+                    android:textColor="@color/account_text"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="end"
+                    android:paddingTop="10dp"
+                    android:gravity="end"/>
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:foreground="@drawable/account_stroke"
+                android:layout_gravity="center"
+                app:cardElevation="2dp"
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/no_photo"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/id_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_photo"
+                android:textColor="@color/account_text"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_gravity="center"
+                android:padding="5dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_number_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:textColorHint="@color/account_text"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_number_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_email_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textColorHint="@color/account_text"
+            app:endIconMode="password_toggle"
+            android:layout_marginBottom="10dp"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_password_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_password_input2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password2"
+            android:textColorHint="@color/account_text"
+            app:endIconMode="password_toggle"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_password_editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/account_about_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/about_me"
+            android:textColorHint="@color/account_text"
+            android:layout_marginBottom="10dp"
+            style="@style/InputEditTextStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_about_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</ScrollView>

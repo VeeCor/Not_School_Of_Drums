@@ -17,7 +17,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="TabLayout.Text" parent="TextAppearance.AppCompat">
+    <style name="TabLayout.Text" parent="Widget.MaterialComponents.TabLayout">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/black</item>
@@ -28,4 +28,33 @@
         <item name="android:textSize">25sp</item>
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
+
+    <style name="InputDropDownStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="endIconTint">@color/account_text</item>
+        <item name="cursorColor">@color/black</item>
+        <item name="hintTextColor">@color/account_text</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="InputEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="cursorColor">@color/black</item>
+        <item name="hintTextColor">@color/account_text</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="LoginInputEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/account_text</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="cursorColor">@color/white</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="hintTextColor">@color/account_text</item>
+    </style>
+
 </resources>

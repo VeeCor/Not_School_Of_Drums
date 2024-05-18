@@ -2,10 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/back_new_entry"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerInParent="true">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/question_text_chose"
@@ -30,16 +28,23 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
+            android:id="@+id/less_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/lesson"
             android:scaleType="centerCrop"
-            android:src="@mipmap/photo_group4"
-            android:foreground="@color/card_not_chosen_foreground_alpha"
-            />
+            android:src="@mipmap/photo_group4"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/less_frame"
+            android:background="@color/card_not_chosen_foreground_alpha"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,16 +65,23 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
+            android:id="@+id/rep_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/lesson"
+            android:contentDescription="@string/repetition"
             android:scaleType="centerCrop"
-            android:src="@mipmap/photo_individually"
-            android:foreground="@color/card_not_chosen_foreground_alpha"
-            />
+            android:src="@mipmap/photo_individually"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rep_frame"
+            android:background="@color/card_not_chosen_foreground_alpha"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,10 +95,9 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        style="@style/Toolbar"
-        android:id="@+id/new_entry_button"
+        android:id="@+id/next_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_marginBottom="20dp"
@@ -95,6 +106,9 @@
         android:gravity="center"
         android:text="@string/next_title"
         android:textSize="23sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@color/black"
         android:textAppearance="@style/ButtonAdd.Text"
         android:layout_alignParentBottom="true"/>
 
