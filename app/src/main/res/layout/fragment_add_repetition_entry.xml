@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-    tools:context=".Fragments.add_repetition_entry">
+    tools:context=".Fragments.AddRepetitionEntry">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:id="@+id/date_auto_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto"
                 android:inputType="date"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -48,7 +48,7 @@
                 android:id="@+id/time_auto_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/roboto"
                 android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>

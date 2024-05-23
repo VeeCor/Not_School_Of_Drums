@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.AddEntryStudentChoice">
+
+<!--TODO: Убрать visibility GONE, когда будет готов поиск-->
+    <SearchView
+        android:id="@+id/search_view_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:closeIcon="@drawable/baseline_close_24"
+        android:searchHintIcon="@null"
+        android:searchIcon="@null"
+        android:queryHint="@string/search"
+        android:layout_marginHorizontal="15dp"
+        android:layout_alignParentTop="true"
+        android:iconifiedByDefault="false"
+        android:theme="@style/Theme.Material3.Light"
+        style="@style/Search"
+        android:visibility="gone"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/students_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_view_entry"/>
+
+    <TextView
+        android:id="@+id/nothing_is_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:text="@string/nothing_is_found"
+        android:textColor="@color/account_text"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:visibility="gone"/>
+
+</RelativeLayout>

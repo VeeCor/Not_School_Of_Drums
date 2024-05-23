@@ -83,17 +83,25 @@
     <string name="no_birthday">* Укажите дату рождения</string>
     <string name="no_gender">* Укажите пол</string>
     <string name="no_phone">* Укажите номер телефона</string>
+    <string name="wrong_phone">* Номер должен содержать 10 цифр (без +7)</string>
     <string name="no_email">* Укажите почту</string>
     <string name="wrong_email">* Неверный формат почты</string>
     <string name="profession">Специализация</string>
     <string name="no_profession">* Укажите специализацию</string>
     <string name="wrong_profession">* Выберите специализацию из списка</string>
+    <string name="search">Поиск</string>
+    <string name="schedule">График</string>
+    <string name="no_schedule">* Укажите график</string>
+    <string name="nothing_is_found">Ничего не найдено</string>
+    <string name="choose_student_text"><u>Выберите ученика:</u></string>
+    <string name="forgot_password"><u>Забыли пароль?</u></string>
 
 
     <string name="simp_text">Из БД</string>
     <string name="date_simple">08 января 2000</string>
     <string name="time_simple">Понедельник в 15:00</string>
     <string name="teacher_simple">Имя Фамилия</string>
+    <string name="student_simple">Имя Фамилия Отчество</string>
     <string name="datetime">01.01.2000 21:11</string>
     <string name="news_text">Текст поста</string>
     <string name="simp">Other many west partiality who laughter to my past voice held sweetness.</string>

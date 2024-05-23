@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/add_Entry_step1"
-        android:name="com.example.notschoolofdrums.Fragments.Add_Entry_step1"
+        android:name="com.example.notschoolofdrums.Fragments.AddEntryStep1"
         android:label="Add_Entry_step1" >
         <action
             android:id="@+id/action_add_Entry_step1_to_add_lesson_entry"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/add_lesson_entry"
-        android:name="com.example.notschoolofdrums.Fragments.add_lesson_entry"
+        android:name="com.example.notschoolofdrums.Fragments.AddLessonEntry"
         android:label="fragment_add_lesson_entry"
         tools:layout="@layout/fragment_add_lesson_entry" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/add_repetition_entry"
-        android:name="com.example.notschoolofdrums.Fragments.add_repetition_entry"
+        android:name="com.example.notschoolofdrums.Fragments.AddRepetitionEntry"
         android:label="fragment_add_repetition_entry"
         tools:layout="@layout/fragment_add_repetition_entry" >
         <action

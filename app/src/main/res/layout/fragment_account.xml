@@ -97,10 +97,9 @@
                     android:id="@+id/database_text_profession"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/simp_text"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/roboto"
                     android:layout_gravity="start"/>
 
             </FrameLayout>
@@ -147,17 +146,16 @@
                         android:text="@string/level"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_level"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -180,17 +178,16 @@
                         android:text="@string/lesson"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_lesson"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -213,17 +210,16 @@
                         android:text="@string/status"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -268,17 +264,16 @@
                         android:text="@string/birth_date"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_birthday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -301,17 +296,16 @@
                         android:text="@string/gender"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -356,17 +350,16 @@
                         android:text="@string/phone_number"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -389,17 +382,16 @@
                         android:text="@string/email"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="start"/>
 
                     <TextView
                         android:id="@+id/database_text_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/simp_text"
                         android:textSize="16sp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/roboto"
                         android:layout_gravity="end"/>
 
                 </FrameLayout>
@@ -438,10 +430,9 @@
                     android:id="@+id/database_text_about_me"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/simp_text"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/roboto"
                     android:layout_gravity="start"/>
 
             </FrameLayout>

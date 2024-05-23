@@ -1,6 +1,7 @@
 package com.example.notschoolofdrums.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -57,6 +58,12 @@ public class Login extends Fragment {
 
         fAuth = FirebaseAuth.getInstance();
 
+        loginInput.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus){
+                singOutError();
+            }
+        });
+
         passwordEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 passwordEditText.clearFocus();
@@ -95,19 +102,36 @@ public class Login extends Fragment {
         entry.setOnClickListener(v -> {
             login = Objects.requireNonNull(loginEditText.getText()).toString();
             password = Objects.requireNonNull(passwordEditText.getText()).toString();
+            int index = getIndex(requireContext());
             if(TextUtils.isEmpty(login) || TextUtils.isEmpty(password)){
                 singInError();
             } else if (listener != null) {
-                    listener.onEntryButtonClick(login, password);
+                if(index == 4){
+                    saveAuth(requireContext(), login,password);
+                }
+                listener.onEntryButtonClick(login, password);
             }
-
         });
-
     }
 
-    private void singInError (){
+    public static void saveAuth(Context context, String login, String password) {
+        SharedPreferences.Editor editor = context.getSharedPreferences("Auth", Context.MODE_PRIVATE).edit();
+        editor.putString("Login", login);
+        editor.putString("Password", password);
+        editor.apply();
+    }
+
+    public void singInError (){
         passwordInput.setHelperText(getString(R.string.error_login_password));
         passwordInput.setHelperTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.error_red)));
     }
 
+    public void singOutError (){
+        passwordInput.setHelperText("");
+    }
+
+    public static int getIndex(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("AccountID", Context.MODE_PRIVATE);
+        return prefs.getInt("Index", 0);
+    }
 }

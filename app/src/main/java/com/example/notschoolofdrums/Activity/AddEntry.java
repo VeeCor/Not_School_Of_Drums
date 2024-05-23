@@ -1,18 +1,16 @@
 package com.example.notschoolofdrums.Activity;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.notschoolofdrums.Fragments.Add_Entry_step1;
+import com.example.notschoolofdrums.Fragments.AddEntryStep1;
 import com.example.notschoolofdrums.R;
 
-public class Add_Entry extends AppCompatActivity {
+public class AddEntry extends AppCompatActivity {
 
     Toolbar toolbar;
 
@@ -32,7 +30,7 @@ public class Add_Entry extends AppCompatActivity {
 
     private void ChangeFragment(){
         FragmentTransaction FT = getSupportFragmentManager().beginTransaction();
-        FT.replace(R.id.frame_for_fragments_add_entry, new Add_Entry_step1()).commit();
+        FT.replace(R.id.frame_for_fragments_add_entry, new AddEntryStep1()).commit();
     }
 
     public void setToolbarTitle(String title) {

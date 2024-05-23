@@ -28,7 +28,7 @@
             tools:layout="@layout/fragment_history_entry" />
         <fragment
             android:id="@+id/activity_entry"
-            android:name="com.example.notschoolofdrums.Fragments.Activity_entry"
+            android:name="com.example.notschoolofdrums.Fragments.ActiveEntry"
             android:label="fragment_my_entry"
             tools:layout="@layout/fragment_my_entry" />
     </navigation>

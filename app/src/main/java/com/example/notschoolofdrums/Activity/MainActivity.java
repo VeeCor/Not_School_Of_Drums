@@ -1,13 +1,16 @@
 package com.example.notschoolofdrums.Activity;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,8 +21,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.notschoolofdrums.Fragments.Account;
-import com.example.notschoolofdrums.Fragments.Account_change;
-import com.example.notschoolofdrums.Fragments.Add_news;
+import com.example.notschoolofdrums.Fragments.AccountChange;
+import com.example.notschoolofdrums.Fragments.AddEntryStudentChoice;
+import com.example.notschoolofdrums.Fragments.AddNews;
 import com.example.notschoolofdrums.Fragments.Entry;
 import com.example.notschoolofdrums.Fragments.NewPerson;
 import com.example.notschoolofdrums.Fragments.News;
@@ -27,21 +31,26 @@ import com.example.notschoolofdrums.Fragments.Messages;
 import com.example.notschoolofdrums.Fragments.Raspisanie;
 import com.example.notschoolofdrums.Fragments.Settings;
 import com.example.notschoolofdrums.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements Account.OnChangeBtnClickListener, Settings.OnExitButtonClickListener {
-
+    ImageView photoDrawer;
+    TextView usernameDrawer;
     Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     FirebaseAuth fAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +58,10 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
         setContentView(R.layout.activity_main);
 
         fAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         if(fAuth.getCurrentUser() == null){
-            startActivity(new Intent(MainActivity.this, Activity_login.class));
+            startActivity(new Intent(MainActivity.this, ActivityLogin.class));
             finish();
         }
 
@@ -62,15 +72,30 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
 
         AccountIndex();
 
+        View headerView = navigationView.getHeaderView(0);
+        photoDrawer = headerView.findViewById(R.id.photo_profile_drawer);
+        usernameDrawer = headerView.findViewById(R.id.username_drawer);
+
+        getDateFromDB();
+
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
+            int index = getIndex(this);
             if(menuItem.getItemId() == R.id.news){
                 ReplaceFragment(new News());
                 toolbar.setTitle(R.string.title_news);
-                toolbar.inflateMenu(R.menu.news_menu);
+                if(index == 3){
+                    toolbar.inflateMenu(R.menu.news_menu_admin);
+                }else {
+                    toolbar.inflateMenu(R.menu.news_menu);
+                }
             } else if (menuItem.getItemId() == R.id.entry){
-                ReplaceFragment(new Entry());
                 toolbar.setTitle(R.string.title_entry);
-                toolbar.inflateMenu(R.menu.plus_menu);
+                if(index == 1){
+                    ReplaceFragment(new Entry());
+                    toolbar.inflateMenu(R.menu.plus_menu);
+                } else if (index == 3){
+                    ReplaceFragment(new AddEntryStudentChoice());
+                }
             } else if (menuItem.getItemId() == R.id.messages){
                 ReplaceFragment(new Messages());
                 toolbar.setTitle(R.string.title_messages);
@@ -87,12 +112,12 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
 
         toolbar.setOnMenuItemClickListener(item -> {
             if(item.getItemId() == R.id.new_entry_icon_menu){
-                Intent intent = new Intent(MainActivity.this, Add_Entry.class);
+                Intent intent = new Intent(MainActivity.this, AddEntry.class);
                 startActivity(intent);
             }
             if(item.getItemId() == R.id.add_icon_menu){
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_for_add_news, new Add_news());
+                ft.replace(R.id.frame_for_add_news, new AddNews());
                 ft.addToBackStack(null);
                 ft.commit();
             }
@@ -172,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
     @Override
     public void OnChangeBtnClick() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_for_fragments, new Account_change());
+        ft.replace(R.id.frame_for_fragments, new AccountChange());
         ft.addToBackStack(null);
         ft.commit();
     }
@@ -180,7 +205,30 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
     public void OnExitButtonClick() {
         fAuth.signOut();
         finish();
-        Intent intent = new Intent(MainActivity.this, Activity_login.class);
+        Intent intent = new Intent(MainActivity.this, ActivityLogin.class);
         startActivity(intent);
+    }
+
+    private void getDateFromDB(){
+        String uid = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        DocumentReference docRef = db.collection("users").document(uid);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    String lastName = document.getString("lastName");
+                    String name = document.getString("name");
+
+                    String accountName = name + " " + lastName;
+                    usernameDrawer.setText(accountName);
+
+                    Log.d(TAG, "OK");
+                } else {
+                    Log.d(TAG, "Document doesn't exist");
+                }
+            } else {
+                Log.d(TAG, "Get failed with ", task.getException());
+            }
+        });
     }
 }

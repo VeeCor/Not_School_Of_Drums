@@ -1,5 +1,7 @@
 package com.example.notschoolofdrums.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -11,15 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
-import com.example.notschoolofdrums.Activity.Add_Entry;
+import com.example.notschoolofdrums.Activity.AddEntry;
 import com.example.notschoolofdrums.R;
 
 
-public class Add_Entry_step1 extends Fragment {
+public class AddEntryStep1 extends Fragment {
     CardView lesson, repetition;
     FrameLayout less, rep;
     Button next;
+    TextView name;
+    FrameLayout line;
     int isChecked;
 
     @Override
@@ -32,6 +37,19 @@ public class Add_Entry_step1 extends Fragment {
         next = view.findViewById(R.id.next_button);
         less = lesson.findViewById(R.id.less_frame);
         rep = repetition.findViewById(R.id.rep_frame);
+        name = view.findViewById(R.id.student_name_text);
+        line = view.findViewById(R.id.line);
+
+        int index = getIndex(requireContext());
+        if (index == 1){
+            name.setVisibility(View.GONE);
+            line.setVisibility(View.GONE);
+//            TODO: добавить вставку имени из базы данных
+        }
+        else {
+            name.setVisibility(View.VISIBLE);
+            line.setVisibility(View.VISIBLE);
+        }
 
         lesson.setOnClickListener(v -> {
             isChecked = 1;
@@ -51,11 +69,11 @@ public class Add_Entry_step1 extends Fragment {
     private void ChangeFragment() {
         FragmentTransaction ft = requireActivity().getSupportFragmentManager().beginTransaction();
         if (isChecked == 1){
-            ft.replace(R.id.frame_for_fragments_add_entry, new add_lesson_entry());
-            ((Add_Entry) requireActivity()).setToolbarTitle(getString(R.string.lesson));
+            ft.replace(R.id.frame_for_fragments_add_entry, new AddLessonEntry());
+            ((AddEntry) requireActivity()).setToolbarTitle(getString(R.string.lesson));
         } else if (isChecked == 2) {
-            ft.replace(R.id.frame_for_fragments_add_entry, new add_repetition_entry());
-            ((Add_Entry) requireActivity()).setToolbarTitle(getString(R.string.repetition));
+            ft.replace(R.id.frame_for_fragments_add_entry, new AddRepetitionEntry());
+            ((AddEntry) requireActivity()).setToolbarTitle(getString(R.string.repetition));
         }
         ft.addToBackStack(null).commit();
     }
@@ -72,5 +90,10 @@ public class Add_Entry_step1 extends Fragment {
             repetition.setCardElevation(30);
             lesson.setCardElevation(0);
         }
+    }
+
+    public static int getIndex(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("AccountID", Context.MODE_PRIVATE);
+        return prefs.getInt("Index", 0);
     }
 }

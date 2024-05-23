@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.notschoolofdrums.Fragments.Activity_entry;
+import com.example.notschoolofdrums.Fragments.ActiveEntry;
 import com.example.notschoolofdrums.Fragments.History_entry;
 
 public class Pager_adapter extends FragmentStateAdapter {
@@ -20,7 +20,7 @@ public class Pager_adapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new Activity_entry();
+                return new ActiveEntry();
             default:
                 return new History_entry();
         }

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.notschoolofdrums.R;
 
-public class Account_change extends Fragment {
+public class AccountChange extends Fragment {
 
     TextView backText;
     Boolean backTextClicked = false;
