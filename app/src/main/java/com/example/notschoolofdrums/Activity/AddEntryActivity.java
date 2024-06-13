@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.notschoolofdrums.Fragments.AddEntryStep1;
 import com.example.notschoolofdrums.R;
 
-public class AddEntry extends AppCompatActivity {
+public class AddEntryActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     tools:context=".Fragments.NewPerson">
 
     <LinearLayout
@@ -249,7 +248,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/roboto_bold"
             android:background="@color/black"
-            android:textAppearance="@style/ButtonAdd.Text"/>
+            android:textAppearance="@style/Theme.MaterialComponents"/>
 
     </LinearLayout>
 

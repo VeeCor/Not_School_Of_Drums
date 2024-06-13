@@ -2,36 +2,33 @@ package com.example.notschoolofdrums.Adapters;
 
 import android.net.Uri;
 
-import com.google.firebase.Timestamp;
-
 public class NewsForAdapter {
 
-    String text;
-    String timestamp;
+    String postText, dateTime;
     Uri imageUri;
 
-    public NewsForAdapter(){}
+    public NewsForAdapter() {}
 
-    public NewsForAdapter(String text, String timestamp, Uri imageUri) {
-        this.text = text;
-        this.timestamp = timestamp;
+    public NewsForAdapter(String PostText, String timestamp, Uri imageUri) {
+        this.postText = PostText;
+        this.dateTime = timestamp;
         this.imageUri = imageUri;
     }
 
-    public String getText() {
-        return text;
+    public String getPostText() {
+        return postText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPostText(String text) {
+        this.postText = text;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Uri getImageUri() {

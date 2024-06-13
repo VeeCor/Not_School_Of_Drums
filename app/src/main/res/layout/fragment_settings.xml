@@ -8,7 +8,7 @@
     android:paddingHorizontal="15dp"
     tools:context=".Fragments.Settings">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/profile_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,14 +22,15 @@
         android:drawableTint="@color/black"
         android:drawablePadding="10dp"
         android:padding="15dp"
-        android:background="@null"/>
+        android:background="@color/transparent"
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_notification"
@@ -42,14 +43,14 @@
         android:drawableTint="@color/black"
         android:drawablePadding="10dp"
         android:padding="15dp"
-        android:background="@null"/>
+        android:background="@color/transparent"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/program"
@@ -62,14 +63,14 @@
         android:drawableTint="@color/black"
         android:drawablePadding="10dp"
         android:padding="15dp"
-        android:background="@null"/>
+        android:background="@color/transparent"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/exit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,6 +84,6 @@
         android:drawableTint="@color/black"
         android:drawablePadding="10dp"
         android:padding="15dp"
-        android:background="@null"/>
+        android:background="@color/transparent"/>
 
 </LinearLayout>

@@ -1,11 +1,14 @@
 package com.example.notschoolofdrums.Fragments;
 
-import android.app.DatePickerDialog;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcel;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,7 +19,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
+import com.example.notschoolofdrums.Filters.CustomDateValidator;
+import com.example.notschoolofdrums.Filters.CustomDateValidator2;
 import com.example.notschoolofdrums.R;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,22 +33,29 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class AddLessonEntry extends Fragment {
     String[] consist = {"Группа", "Индивидуально"};
+    List<String> teacherNames, teacherUid;
+    static List<String> schedule;
     TextInputLayout consistInput, teacherInput, dateInput, timeInput;
-    AutoCompleteTextView consistAutoInput, teacherAutoInput, dateAutoInput, timeAutoInput;
+    AutoCompleteTextView consistAutoInput;
+    static AutoCompleteTextView teacherAutoInput;
+    AutoCompleteTextView dateAutoInput;
+    AutoCompleteTextView timeAutoInput;
     Button finish;
     SimpleDateFormat dateFormat;
-    private boolean isFormatting, hasErrors;
+    private boolean isFormatting;
     private int prevLength;
     FirebaseFirestore db;
+    String Uid;
+    long selectedValue;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,10 +78,8 @@ public class AddLessonEntry extends Fragment {
         setupAutoCompleteTextView(consistAutoInput, consist);
         getDataFromDB();
 
-        dateInput.setEndIconOnClickListener(v -> {
-            showDatePickerDialog();
-            cleanFocus();
-        });
+        dateInput.setEndIconOnClickListener(v -> showDatePickerDialog());
+        dateAutoInput.setOnClickListener(v -> showDatePickerDialog());
 
         dateAutoInput.addTextChangedListener(new TextWatcher() {
 
@@ -109,31 +122,102 @@ public class AddLessonEntry extends Fragment {
         item.setOnItemClickListener((parent, view, position, id) -> cleanFocus());
     }
 
+    private void setupAutoCompleteTextViewArrayList(AutoCompleteTextView item, List<String> value) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), R.layout.list_for_items, value);
+        item.setAdapter(adapter);
+        item.setOnItemClickListener((parent, view, position, id) -> {
+            selectedValue = parent.getItemIdAtPosition(position);
+            getScheduleDataFromDB();
+            cleanFocus();
+        });
+    }
+
     private void showDatePickerDialog() {
-        setLocale();
-        final Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
+        final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+03:00"));
+        calendar.clear();
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(),
-                (view, year1, monthOfYear, dayOfMonth) -> {
-                    calendar.set(year1, monthOfYear, dayOfMonth);
-                    dateAutoInput.setText(dateFormat.format(calendar.getTime()));
-                },
-                year, month, day);
+        MaterialDatePicker.Builder<Long> builder = getLongBuilder();
+        MaterialDatePicker<Long> datePicker = builder.build();
 
-        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-        Calendar maxDateCalendar = Calendar.getInstance();
-        maxDateCalendar.add(Calendar.DAY_OF_MONTH, 21);
-        datePickerDialog.getDatePicker().setMaxDate(maxDateCalendar.getTimeInMillis());
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            calendar.setTimeInMillis(selection);
+            dateAutoInput.setText(dateFormat.format(calendar.getTime()));
+        });
 
-        datePickerDialog.show();
+        datePicker.show(getChildFragmentManager(), "datePicker");
+    }
+
+    @NonNull
+    private static MaterialDatePicker.Builder<Long> getLongBuilder() {
+        long today = MaterialDatePicker.todayInUtcMilliseconds();
+
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Выберите дату");
+        builder.setSelection(today);
+
+        Calendar startDate = Calendar.getInstance(TimeZone.getTimeZone("GMT+03:00"));
+        startDate.add(Calendar.DAY_OF_MONTH, -1);
+        CalendarConstraints.Builder constraintsBuilder = getBuilder(startDate);
+
+        builder.setCalendarConstraints(constraintsBuilder.build());
+        return builder;
+    }
+
+    @NonNull
+    private static CalendarConstraints.Builder getBuilder(Calendar startDate) {
+        Calendar endDate = Calendar.getInstance();
+        endDate.add(Calendar.DAY_OF_MONTH, 21);
+
+        List<Integer> blockedDays = getBlockedDays();
+
+
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        constraintsBuilder.setStart(startDate.getTimeInMillis());
+        constraintsBuilder.setEnd(endDate.getTimeInMillis());
+        if (!blockedDays.isEmpty()) {
+            constraintsBuilder.setValidator(new CustomDateValidator(startDate.getTimeInMillis(), endDate.getTimeInMillis(), blockedDays));
+        } else {
+            constraintsBuilder.setValidator(new CustomDateValidator2(startDate.getTimeInMillis(), endDate.getTimeInMillis()));
+        }
+        return constraintsBuilder;
+    }
+
+    private static List<Integer> getBlockedDays() {
+        List<Integer> blockedDays = new ArrayList<>();
+        if (teacherAutoInput.getText().toString().isEmpty()) {
+            return Collections.emptyList();
+        }
+        for (String day : schedule) {
+            switch (day) {
+                case "Пн":
+                    blockedDays.add(Calendar.MONDAY);
+                    break;
+                case "Вт":
+                    blockedDays.add(Calendar.TUESDAY);
+                    break;
+                case "Ср":
+                    blockedDays.add(Calendar.WEDNESDAY);
+                    break;
+                case "Чт":
+                    blockedDays.add(Calendar.THURSDAY);
+                    break;
+                case "Пт":
+                    blockedDays.add(Calendar.FRIDAY);
+                    break;
+                case "Сб":
+                    blockedDays.add(Calendar.SATURDAY);
+                    break;
+                case "Вс":
+                    blockedDays.add(Calendar.SUNDAY);
+                    break;
+            }
+        }
+        return blockedDays;
     }
 
     private void getDataFromDB() {
-        List<String> teacherNames = new ArrayList<>();
+        teacherNames = new ArrayList<>();
+        teacherUid = new ArrayList<>();
         List<String> accTypeValues = Collections.singletonList("Преподаватель");
         Query query = db.collection("users")
                 .whereIn("accType", accTypeValues);
@@ -142,19 +226,18 @@ public class AddLessonEntry extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            String Uid = document.getId();
+                            Uid = document.getId();
                             String lastName = document.getString("lastName");
                             String name = document.getString("name");
 
                             if (lastName != null && name != null ) {
                                 String username = lastName + " " + name;
-                                teacherNames.clear();
                                 teacherNames.add(username);
-                                setupAutoCompleteTextView(teacherAutoInput, teacherNames.toArray(new String[0]));
+                                teacherUid.add(Uid);
                                 Log.i("Firestore", "Данные получены");
                             }
                         }
-
+                        setupAutoCompleteTextViewArrayList(teacherAutoInput, teacherNames);
                     } else {
                         Log.e("Firestore", String.valueOf(task.getException()));
                     }
@@ -163,36 +246,33 @@ public class AddLessonEntry extends Fragment {
 
     }
 
-    private void getScheduleFromDB() {
-        List<String> workDays = new ArrayList<>();
-        List<String> accTypeValues = Arrays.asList("Преподаватель", "преподаватель");
-        Query query = db.collection("users")
-                .whereIn("accType", accTypeValues);
+    private void getScheduleDataFromDB() {
+        Uid = teacherUid.get((int) selectedValue);
+        DocumentReference docRef = db.collection("users").document(Uid);
 
-        query.get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String Uid = document.getId();
-                            DocumentReference workDaysRef = db.collection("users").document(Uid)
-                                    .collection("schedule").document("WorkDays");
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                Object scheduleObj = documentSnapshot.get("schedule");
 
-                            Boolean Mon = document.getBoolean("Mon");
-                            Boolean Tue = document.getBoolean("Tue");
-                            Boolean Wed = document.getBoolean("Wed");
-                            Boolean Thu = document.getBoolean("Thu");
-                            Boolean Fri = document.getBoolean("Fri");
-                            Boolean Sat = document.getBoolean("Sat");
-                            Boolean Sun = document.getBoolean("Sun");
+                if (scheduleObj instanceof List<?>) {
+                    List<?> scheduleList = (List<?>) scheduleObj;
+                    List<String> schedule = new ArrayList<>();
 
+                    for (Object item : scheduleList) {
+                        if (item instanceof String) {
+                            schedule.add((String) item);
+                        } else {
+                            Log.e("Firestore", "Element in schedule is not a String");
                         }
-
-                    } else {
-                        Log.e("Firestore", String.valueOf(task.getException()));
                     }
-                })
-                .addOnFailureListener(e -> Log.e("Firestore", "Не удалось получить данные"));
-
+                    this.schedule = schedule;
+                } else {
+                    Log.e("Firestore", "Schedule is not a List");
+                }
+            } else {
+                Log.d("Firestore", "No such document");
+            }
+        }).addOnFailureListener(e -> Log.d("Firestore", "get failed with ", e));
     }
 
     private void cleanFocus() {
@@ -200,13 +280,5 @@ public class AddLessonEntry extends Fragment {
         teacherInput.clearFocus();
         dateInput.clearFocus();
         timeInput.clearFocus();
-    }
-
-    private void setLocale() {
-        Locale locale = new Locale("ru");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 }

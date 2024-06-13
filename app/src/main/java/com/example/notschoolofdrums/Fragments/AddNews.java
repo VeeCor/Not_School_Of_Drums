@@ -1,19 +1,11 @@
 package com.example.notschoolofdrums.Fragments;
 
-import static android.app.Activity.RESULT_OK;
-import static android.content.ContentValues.TAG;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,33 +18,30 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.notschoolofdrums.Activity.MainActivity;
 import com.example.notschoolofdrums.R;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
+import java.util.UUID;
 
 public class AddNews extends Fragment {
 
@@ -60,15 +49,15 @@ public class AddNews extends Fragment {
     FloatingActionButton addImageButton;
     CardView MainImageLoadingCard, ImageLoadingCard;
     ImageView imageLoading;
-    TextView textLoadingCard, whatIsNewTitle;
+    TextView textLoadingCard, sendNews;
     EditText postText;
     ProgressBar progressBar;
     ImageButton clearImageButton;
-    Uri imageUri;
+    Uri imageUri, downloadUri;
     private float dY, initialY, screenHeight;
     FirebaseFirestore db;
     FirebaseStorage storage;
-    StorageReference storageReference;
+    StorageReference storageRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +70,7 @@ public class AddNews extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        storageRef = storage.getReference();
 
         close = view.findViewById(R.id.close_item);
         addImageButton = view.findViewById(R.id.floatingActionButton);
@@ -91,7 +80,7 @@ public class AddNews extends Fragment {
         textLoadingCard = view.findViewById(R.id.text_loading_card);
         progressBar = view.findViewById(R.id.progress_bar);
         clearImageButton = view.findViewById(R.id.clear_image_button);
-        whatIsNewTitle = view.findViewById(R.id.what_is_new_title);
+        sendNews = view.findViewById(R.id.send_news);
         postText = view.findViewById(R.id.post_text);
 
         close.setOnClickListener(v -> CloseFragment());
@@ -104,18 +93,18 @@ public class AddNews extends Fragment {
                         Intent image = result.getData();
                         assert image != null;
                         imageUri = image.getData();
-                        assert imageUri != null;
-                        String StringUri = imageUri.toString();
+                        imageLoading.setImageURI(imageUri);
+                        textLoadingCard.setText(String.valueOf(imageUri));
+
                         MainImageLoadingCard.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.VISIBLE);
-                        imageLoading.setImageURI(imageUri);
-                        textLoadingCard.setText(StringUri);
+
                         new Handler().postDelayed(() -> {
                             progressBar.setVisibility(View.GONE);
                             ImageLoadingCard.setVisibility(View.VISIBLE);
                             textLoadingCard.setVisibility(View.VISIBLE);
                             clearImageButton.setVisibility(View.VISIBLE);
-                        }, 3000);
+                        }, 1500);
                     }
                 }
         );
@@ -127,6 +116,52 @@ public class AddNews extends Fragment {
 
         clearImageButton.setOnClickListener(v -> DeleteImage());
 
+        sendNews.setOnClickListener(v -> {
+            if (!(postText.getText().toString().isEmpty()) || MainImageLoadingCard.getVisibility() == View.VISIBLE){
+                String text = postText.getText().toString();
+                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+03:00"));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+03:00"));
+                SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                timeFormat.setTimeZone(TimeZone.getTimeZone("GMT+03:00"));
+
+                String currentDate = dateFormat.format(calendar.getTime());
+                String currentTime = timeFormat.format(calendar.getTime());
+
+                Map<String, Object> news = new HashMap<>();
+                if (!(postText.getText().toString().isEmpty())){
+                    news.put("text", text);
+                }
+                news.put("datetime", currentDate + " " + currentTime);
+
+                if (MainImageLoadingCard.getVisibility() == View.VISIBLE){
+                    String filename = UUID.randomUUID().toString() + ".jpg";
+                    StorageReference imageRef = storageRef.child("images/" + filename);
+                    UploadTask uploadTask = imageRef.putFile(imageUri);
+
+                    uploadTask.addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            downloadUri = task.getResult();
+                            news.put("imageURI", downloadUri);
+
+                            db.collection("news")
+                                    .add(news)
+                                    .addOnSuccessListener(documentReference -> CloseFragment())
+                                    .addOnFailureListener(documentReference -> Log.e("FirebaseFirestore", "Error adding document", documentReference));
+
+                            Log.d("FirebaseStorage", "Download URI: " + downloadUri.toString());
+                        } else {
+                            Log.e("FirebaseStorage", "Failed to get download URI", task.getException());
+                        }
+                    })).addOnFailureListener(exception -> Log.e("FirebaseStorage", "Failed to upload image", exception));
+                } else {
+                    db.collection("news")
+                            .add(news)
+                            .addOnSuccessListener(documentReference -> CloseFragment())
+                            .addOnFailureListener(documentReference -> Log.e("FirebaseFirestore", "Error adding document", documentReference));
+                }
+            }
+        });
 
         screenHeight = getResources().getDisplayMetrics().heightPixels;
 

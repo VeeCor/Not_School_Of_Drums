@@ -1,10 +1,12 @@
 package com.example.notschoolofdrums.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -19,7 +21,8 @@ import com.example.notschoolofdrums.R;
 public class Settings extends Fragment {
 
     private OnExitButtonClickListener Listener;
-    Button accountBtn, exitBtn;
+    private Account.OnChangeBtnClickListener OnChangeBtnClickListener;
+    AppCompatButton accountBtn, exitBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,8 +32,6 @@ public class Settings extends Fragment {
         view.startAnimation(slideInLeftAnimation);
 
         accountBtn = view.findViewById(R.id.profile_button);
-
-        //TODO: Сделать всплывающее окно с подтверждением выхода
 
         return view;
     }
@@ -45,6 +46,9 @@ public class Settings extends Fragment {
         if (context instanceof OnExitButtonClickListener) {
             Listener = (OnExitButtonClickListener) context;
         }
+        if (context instanceof Account.OnChangeBtnClickListener) {
+            OnChangeBtnClickListener = (Account.OnChangeBtnClickListener) context;
+        }
     }
 
     @Override
@@ -53,8 +57,23 @@ public class Settings extends Fragment {
 
         exitBtn = view.findViewById(R.id.exit_button);
         exitBtn.setOnClickListener(v -> {
-            if (Listener != null) {
-                Listener.OnExitButtonClick();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Выход");
+            builder.setMessage("Вы действительно хотите выйти?");
+            builder.setPositiveButton("Да", (dialog, which) -> {
+                if (Listener != null) {
+                    Listener.OnExitButtonClick();
+                }
+            });
+            builder.setNegativeButton("Нет", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
+        });
+        accountBtn.setOnClickListener(v -> {
+            if (OnChangeBtnClickListener != null) {
+                OnChangeBtnClickListener.OnChangeBtnClick();
             }
         });
     }

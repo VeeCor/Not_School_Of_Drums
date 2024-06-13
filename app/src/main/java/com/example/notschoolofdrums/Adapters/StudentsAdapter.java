@@ -14,16 +14,21 @@ import com.example.notschoolofdrums.R;
 import java.util.ArrayList;
 
 public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.MyViewHolder> {
-    Context context;
-    ArrayList<Students> studentsArrayList;
+    private Context context;
+    private ArrayList<Students> studentsArrayList;
+    private OnItemClickListener onItemClickListener;
 
-    public StudentsAdapter(Context context, ArrayList<Students> studentsArrayList) {
-        this.context = context;
-        this.studentsArrayList = studentsArrayList;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 
-//TODO: завершить функцию поиска
-    public void setFilteredList (ArrayList<Students> filteredList){
+    public StudentsAdapter(Context context, ArrayList<Students> studentsArrayList, OnItemClickListener onItemClickListener) {
+        this.context = context;
+        this.studentsArrayList = studentsArrayList;
+        this.onItemClickListener = onItemClickListener;
+    }
+    //TODO: завершить функцию поиска
+    public void setFilteredList(ArrayList<Students> filteredList) {
         this.studentsArrayList = filteredList;
         notifyDataSetChanged();
     }
@@ -39,6 +44,15 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Students student = studentsArrayList.get(position);
         holder.username.setText(student.getUsername());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -48,6 +62,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView username;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.student_name);

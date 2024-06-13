@@ -6,37 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Messages">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/image"
-        android:src="@drawable/gears"
-        android:layout_above="@+id/ups"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"/>
-
     <TextView
-        android:id="@+id/ups"
+        android:id="@+id/no_messages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ups"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:layout_centerInParent="true"
-        android:gravity="center"/>
-
-    <TextView
-        android:id="@+id/ups_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ups_text"
-        android:textSize="17sp"
+        android:text="@string/no_messages"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
-        android:layout_below="@+id/ups"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>

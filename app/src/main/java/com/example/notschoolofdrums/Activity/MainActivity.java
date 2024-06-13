@@ -39,8 +39,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Objects;
-
 
 public class MainActivity extends AppCompatActivity implements Account.OnChangeBtnClickListener, Settings.OnExitButtonClickListener {
     ImageView photoDrawer;
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
         photoDrawer = headerView.findViewById(R.id.photo_profile_drawer);
         usernameDrawer = headerView.findViewById(R.id.username_drawer);
 
-        getDateFromDB();
+        getDataFromDB();
 
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
             int index = getIndex(this);
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
 
         toolbar.setOnMenuItemClickListener(item -> {
             if(item.getItemId() == R.id.new_entry_icon_menu){
-                Intent intent = new Intent(MainActivity.this, AddEntry.class);
+                Intent intent = new Intent(MainActivity.this, AddEntryActivity.class);
                 startActivity(intent);
             }
             if(item.getItemId() == R.id.add_icon_menu){
@@ -209,26 +207,31 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
         startActivity(intent);
     }
 
-    private void getDateFromDB(){
-        String uid = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    String lastName = document.getString("lastName");
-                    String name = document.getString("name");
+    private void getDataFromDB(){
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            DocumentReference docRef = db.collection("users").document(uid);
+            docRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String lastName = document.getString("lastName");
+                        String name = document.getString("name");
 
-                    String accountName = name + " " + lastName;
-                    usernameDrawer.setText(accountName);
+                        String accountName = name + " " + lastName;
+                        usernameDrawer.setText(accountName);
 
-                    Log.d(TAG, "OK");
+                        Log.d(TAG, "OK");
+                    } else {
+                        Log.d(TAG, "Document doesn't exist");
+                    }
                 } else {
-                    Log.d(TAG, "Document doesn't exist");
+                    Log.d(TAG, "Get failed with ", task.getException());
                 }
-            } else {
-                Log.d(TAG, "Get failed with ", task.getException());
-            }
-        });
+            });
+        } else {
+            Log.d(TAG, "No user is signed in");
+        }
     }
 }

@@ -6,16 +6,20 @@ import static android.view.View.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.notschoolofdrums.Fragments.Log_choice;
+import com.example.notschoolofdrums.Fragments.LogChoice;
 import com.example.notschoolofdrums.Fragments.Login;
 import com.example.notschoolofdrums.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +53,7 @@ public class ActivityLogin extends AppCompatActivity implements Login.OnEntryBut
     }
 
     private void ChangeFragment() {
-        Log_choice logChoice = new Log_choice();
+        LogChoice logChoice = new LogChoice();
         FragmentTransaction FT = getSupportFragmentManager().beginTransaction();
         FT.replace(R.id.login_frame, logChoice).commit();
         Back_button.setVisibility(INVISIBLE);
@@ -57,14 +61,28 @@ public class ActivityLogin extends AppCompatActivity implements Login.OnEntryBut
 
     @Override
     public void onEntryButtonClick(String login, String password) {
-        fAuth.signInWithEmailAndPassword(login, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                CheckAccount();
-            } else {
-                Login loginFragment = new Login();
-                loginFragment.singInError();
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkCapabilities networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+
+        if (networkCapabilities != null) {
+            if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                fAuth.signInWithEmailAndPassword(login, password).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        CheckAccount();
+                    } else {
+                        Login loginFragment = new Login();
+                        loginFragment.singInError();
+                    }
+                });
             }
-        });
+        } else {
+            Toast.makeText(this, "Нет подключения к интернету", Toast.LENGTH_SHORT).show();
+            Login loginFragment = (Login) getSupportFragmentManager().findFragmentById(R.id.login_relative);
+            assert loginFragment != null;
+            ProgressBar progressBar = loginFragment.getProgressBar();
+            progressBar.setVisibility(GONE);
+        }
     }
 
     private void CheckAccount(){
@@ -101,5 +119,4 @@ public class ActivityLogin extends AppCompatActivity implements Login.OnEntryBut
         SharedPreferences prefs = context.getSharedPreferences("AccountID", Context.MODE_PRIVATE);
         return prefs.getInt("Index", 0);
     }
-
 }

@@ -2,21 +2,23 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/New_Entry"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        style="@style/Toolbar"
         android:id="@+id/new_entry_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/black"
+        android:theme="@style/ToolbarTheme"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
+        app:titleTextAppearance="@style/ToolbarTitleText"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/title_new_entry"
-        app:titleTextAppearance="@style/Toolbar.Text"
         app:navigationIcon="@drawable/baseline_arrow_back_24"/>
 
     <androidx.fragment.app.FragmentContainerView

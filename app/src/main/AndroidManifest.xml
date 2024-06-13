@@ -20,10 +20,10 @@
             android:name=".Activity.ActivityLogin"
             android:exported="true" />
         <activity
-            android:name=".Activity.AddEntry"
+            android:name=".Activity.AddEntryActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.Launcher_activity"
+            android:name=".Activity.LauncherActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

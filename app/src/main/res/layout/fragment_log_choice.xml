@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Log_choice">
+    tools:context=".Fragments.LogChoice">
 
     <LinearLayout
         android:id="@+id/login_LinearLayout"
@@ -26,45 +26,57 @@
             android:gravity="center"
             android:layout_marginBottom="25dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/student_button"
             android:background="@drawable/corner_background"
             android:text="@string/login_student"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textAppearance="@style/Theme.MaterialComponents"
             android:layout_marginHorizontal="40dp"
             android:paddingVertical="12dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/teacher_button"
             android:background="@drawable/corner_background"
             android:text="@string/login_teacher"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textAppearance="@style/Theme.MaterialComponents"
             android:layout_marginHorizontal="40dp"
             android:paddingVertical="12dp"
             android:layout_marginTop="15dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/admin_button"
             android:background="@drawable/corner_background"
             android:text="@string/login_admin"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textAppearance="@style/Theme.MaterialComponents"
             android:layout_marginHorizontal="40dp"
             android:paddingVertical="12dp"
             android:layout_marginTop="15dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/manager_button"
             android:background="@drawable/corner_background"
             android:text="@string/login_manager"
-            android:textAppearance="@style/ButtonAdd.Text.login_style"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_bold"
+            android:textAppearance="@style/Theme.MaterialComponents"
             android:layout_marginHorizontal="40dp"
             android:paddingVertical="12dp"
             android:layout_marginTop="15dp"/>

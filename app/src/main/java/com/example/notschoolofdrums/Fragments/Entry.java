@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.notschoolofdrums.Adapters.Pager_adapter;
+import com.example.notschoolofdrums.Adapters.PagerAdapter;
 import com.example.notschoolofdrums.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class Entry extends Fragment {
 
-    Pager_adapter pagerAdapter;
+    PagerAdapter pagerAdapter;
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
@@ -30,7 +30,7 @@ public class Entry extends Fragment {
         viewPager = view.findViewById(R.id.pager);
         tabLayout = view.findViewById(R.id.tab_layout);
 
-        pagerAdapter = new Pager_adapter(getChildFragmentManager(), getLifecycle());
+        pagerAdapter = new PagerAdapter(getChildFragmentManager(), getLifecycle());
         viewPager.setAdapter(pagerAdapter);
 
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -26,6 +27,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.notschoolofdrums.R;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +46,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TimeZone;
 
 public class NewPerson extends Fragment {
 
@@ -118,21 +123,9 @@ public class NewPerson extends Fragment {
             return false;
         });
 
-        scheduleAutoInput.setOnFocusChangeListener((v, hasFocus) -> {
-            if(hasFocus){
-                dialogScheduleCheck();
-            }
-        });
-
-        birthdayInput.setEndIconOnClickListener(v -> {
-            showDatePickerDialog();
-            cleanFocus();
-        });
-
-        birthdayAutoInput.setOnClickListener(v -> {
-            showDatePickerDialog();
-            cleanFocus();
-        });
+        scheduleAutoInput.setOnClickListener(v -> dialogScheduleCheck());
+        birthdayInput.setEndIconOnClickListener(v -> showDatePickerDialog());
+        birthdayAutoInput.setOnClickListener(v -> showDatePickerDialog());
 
         AutoCompleteInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -318,21 +311,24 @@ public class NewPerson extends Fragment {
     }
 
     private void showDatePickerDialog() {
-        setLocale();
-        final Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
+        final Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+03:00"));
+        calendar.clear();
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                requireContext(),
-                (view, year1, monthOfYear, dayOfMonth) -> {
-                    calendar.set(year1, monthOfYear, dayOfMonth);
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Выберите дату");
+
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        builder.setCalendarConstraints(constraintsBuilder.build());
+
+        MaterialDatePicker<Long> datePicker = builder.build();
+
+        datePicker.addOnPositiveButtonClickListener(
+                selection -> {
+                    calendar.setTimeInMillis(selection);
                     birthdayAutoInput.setText(dateFormat.format(calendar.getTime()));
-                },
-                year, month, day);
+                });
 
-        datePickerDialog.show();
+        datePicker.show(getChildFragmentManager(), datePicker.toString());
     }
 
     private void dialogScheduleCheck(){
@@ -441,14 +437,6 @@ public class NewPerson extends Fragment {
             password.append(CHAR_SET.charAt(randomIndex));
         }
         return password.toString();
-    }
-
-    private void setLocale() {
-        Locale locale = new Locale("ru");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     private void cleanForm (){

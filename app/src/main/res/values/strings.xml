@@ -19,6 +19,9 @@
     <string name="consist_value_group">Группа</string>
     <string name="consist_value_alone">Индивидуально</string>
     <string name="my_entries">Мои записи</string>
+    <string name="no_entries">Нет записей</string>
+    <string name="no_news">Нет новостей</string>
+    <string name="no_messages">Нет сообщений</string>
     <string name="history">История</string>
     <string name="next_title">Далее</string>
     <string name="new_entry_button_title">Записаться</string>

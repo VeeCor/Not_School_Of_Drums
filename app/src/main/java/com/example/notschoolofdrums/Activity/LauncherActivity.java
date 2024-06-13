@@ -10,7 +10,7 @@ import com.example.notschoolofdrums.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Launcher_activity extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity {
 
     Timer timer;
 
@@ -24,7 +24,7 @@ public class Launcher_activity extends AppCompatActivity {
             @Override
             public void run() {
                 finish();
-                Intent intent = new Intent(Launcher_activity.this, MainActivity.class);
+                Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         }, 3000);

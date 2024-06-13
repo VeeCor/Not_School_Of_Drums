@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.notschoolofdrums"
-        minSdk = 23
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -69,4 +69,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation ("androidx.work:work-runtime:2.9.0")
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
 }

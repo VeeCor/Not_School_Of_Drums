@@ -7,20 +7,24 @@
     tools:context=".Fragments.ActiveEntry">
 
     <TextView
+        android:id="@+id/no_entries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/my_entries"
-        android:textSize="30sp"
+        android:text="@string/no_entries"
+        android:textSize="20sp"
         android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"/>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:background="@color/Background">-->
-<!--        -->
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@color/Background"
+        android:layout_below="@+id/no_entries">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

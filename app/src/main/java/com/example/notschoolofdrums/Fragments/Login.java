@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.notschoolofdrums.R;
@@ -38,6 +39,7 @@ import java.util.Objects;
 public class Login extends Fragment {
     String login, password;
     Button entry;
+    ProgressBar progressBar;
     TextInputLayout loginInput, passwordInput;
     TextInputEditText loginEditText, passwordEditText;
     private OnEntryButtonClickListener listener;
@@ -55,6 +57,7 @@ public class Login extends Fragment {
         passwordInput = view.findViewById(R.id.login_password_input);
         loginEditText = view.findViewById(R.id.login_log_editText);
         passwordEditText = view.findViewById(R.id.login_password_editText);
+        progressBar = view.findViewById(R.id.login_progress);
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -100,6 +103,7 @@ public class Login extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         entry = view.findViewById(R.id.entry_button);
         entry.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
             login = Objects.requireNonNull(loginEditText.getText()).toString();
             password = Objects.requireNonNull(passwordEditText.getText()).toString();
             int index = getIndex(requireContext());
@@ -133,5 +137,8 @@ public class Login extends Fragment {
     public static int getIndex(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("AccountID", Context.MODE_PRIVATE);
         return prefs.getInt("Index", 0);
+    }
+    public ProgressBar getProgressBar() {
+        return progressBar;
     }
 }

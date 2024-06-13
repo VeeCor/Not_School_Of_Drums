@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.notschoolofdrums.R;
 
 import java.util.ArrayList;
@@ -34,9 +35,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.MyViewHolder holder, int position) {
         NewsForAdapter newsForAdapter = newsArrayList.get(position);
-        holder.datetime.setText(String.valueOf(newsForAdapter.timestamp));
-        holder.postText.setText(newsForAdapter.text);
-        holder.imagePost.setImageURI(newsForAdapter.imageUri);
+        holder.datetime.setText(newsForAdapter.getDateTime());
+        holder.postText.setText(newsForAdapter.getPostText());
+        if(newsForAdapter.getImageUri() != null){
+            Glide.with(context)
+                    .load(newsForAdapter.getImageUri())
+                    .into(holder.imagePost);
+        }
     }
 
     @Override

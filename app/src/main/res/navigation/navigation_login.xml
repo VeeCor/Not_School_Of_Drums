@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/log_choice"
-        android:name="com.example.notschoolofdrums.Fragments.Log_choice"
+        android:name="com.example.notschoolofdrums.Fragments.LogChoice"
         android:label="fragment_log_choice"
         tools:layout="@layout/fragment_log_choice" >
         <action

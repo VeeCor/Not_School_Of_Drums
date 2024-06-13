@@ -9,9 +9,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.notschoolofdrums.Fragments.ActiveEntry;
 import com.example.notschoolofdrums.Fragments.History_entry;
 
-public class Pager_adapter extends FragmentStateAdapter {
+public class PagerAdapter extends FragmentStateAdapter {
 
-    public Pager_adapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public PagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 

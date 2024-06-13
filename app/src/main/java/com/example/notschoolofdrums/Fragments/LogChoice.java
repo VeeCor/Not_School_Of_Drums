@@ -16,7 +16,7 @@ import android.widget.Button;
 
 import com.example.notschoolofdrums.R;
 
-public class Log_choice extends Fragment {
+public class LogChoice extends Fragment {
 
     Button Student, Teacher, Admin, Manager;
     public int index;

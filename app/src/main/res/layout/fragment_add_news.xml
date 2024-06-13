@@ -27,7 +27,7 @@
             android:layout_marginStart="-5dp"/>
 
         <TextView
-            android:id="@+id/what_is_new_title"
+            android:id="@+id/send_news"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/publish"
@@ -136,7 +136,6 @@
                     android:ellipsize="end"
                     android:paddingHorizontal="7dp"
                     android:visibility="gone"
-                    android:text="@string/simp"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/image_loading_card"
                     android:layout_toStartOf="@+id/clear_image_button"/>
@@ -166,7 +165,7 @@
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/image"
         android:src="@drawable/baseline_add_photo_alternate_24"
-        app:backgroundTint="@color/black"
-        tools:ignore="RelativeOverlap" />
+        android:backgroundTint="@color/black"
+        app:tint="@color/white"/>
 
 </RelativeLayout>
