@@ -236,8 +236,6 @@
             android:id="@+id/add_person_button"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="40dp"

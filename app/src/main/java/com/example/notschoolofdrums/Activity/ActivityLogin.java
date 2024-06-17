@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;

@@ -21,8 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.notschoolofdrums.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -90,6 +88,7 @@ public class Account extends Fragment {
 
         boolean backTextClicked = getValue(requireContext());
         if (backTextClicked) {
+            getDataFromDB();
             Animation slideInLeftAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_from_left);
             view.startAnimation(slideInLeftAnimation);
         }

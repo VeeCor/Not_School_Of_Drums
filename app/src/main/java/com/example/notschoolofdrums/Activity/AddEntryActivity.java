@@ -8,9 +8,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.notschoolofdrums.Fragments.AddEntryStep1;
+import com.example.notschoolofdrums.Fragments.AddLessonEntry;
 import com.example.notschoolofdrums.R;
 
-public class AddEntryActivity extends AppCompatActivity {
+public class AddEntryActivity extends AppCompatActivity implements AddLessonEntry.OnFinishButtonClickListener {
 
     Toolbar toolbar;
 
@@ -37,5 +38,10 @@ public class AddEntryActivity extends AppCompatActivity {
         if (toolbar != null) {
             toolbar.setTitle(title);
         }
+    }
+
+    @Override
+    public void onFinishButtonClick() {
+        finish();
     }
 }

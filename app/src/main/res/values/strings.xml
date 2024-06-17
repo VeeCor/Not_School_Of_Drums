@@ -98,6 +98,10 @@
     <string name="nothing_is_found">Ничего не найдено</string>
     <string name="choose_student_text"><u>Выберите ученика:</u></string>
     <string name="forgot_password"><u>Забыли пароль?</u></string>
+    <string name="no_date">* Выберите дату</string>
+    <string name="no_time">* Выберите время</string>
+    <string name="no_teacher">* Выберите преподавателя</string>
+    <string name="no_consist">* Выберите вид занятия</string>
 
 
     <string name="simp_text">Из БД</string>

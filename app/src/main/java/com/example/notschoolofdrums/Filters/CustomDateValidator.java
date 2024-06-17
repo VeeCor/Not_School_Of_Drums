@@ -32,7 +32,7 @@ public class CustomDateValidator implements CalendarConstraints.DateValidator {
             return false;
         }
 
-        return !blockedDays.contains(dayOfWeek);
+        return blockedDays.contains(dayOfWeek);
     }
 
     @Override

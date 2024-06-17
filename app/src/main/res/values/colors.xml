@@ -20,5 +20,6 @@
     <color name="account_card_background">#E5E5E5</color>
     <color name="account_card_stroke">#888888</color>
     <color name="error_red">#850002</color>
+    <color name="progress_back">#27000000</color>
     <color name="transparent" />
 </resources>

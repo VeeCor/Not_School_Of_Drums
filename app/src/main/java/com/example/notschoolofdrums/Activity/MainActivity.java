@@ -2,6 +2,7 @@ package com.example.notschoolofdrums.Activity;
 
 import static android.content.ContentValues.TAG;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +31,7 @@ import com.example.notschoolofdrums.Fragments.News;
 import com.example.notschoolofdrums.Fragments.Messages;
 import com.example.notschoolofdrums.Fragments.Raspisanie;
 import com.example.notschoolofdrums.Fragments.Settings;
+import com.example.notschoolofdrums.Other.FirestoreUpdaterManager;
 import com.example.notschoolofdrums.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -38,7 +40,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 
 public class MainActivity extends AppCompatActivity implements Account.OnChangeBtnClickListener, Settings.OnExitButtonClickListener {
     ImageView photoDrawer;
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements Account.OnChangeB
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         });
+
+        FirestoreUpdaterManager.scheduleDailyWork(this);
     }
 
     @Override
