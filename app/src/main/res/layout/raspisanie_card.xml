@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="18.06.2024"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TableLayout
+        android:id="@+id/table1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/class1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Время"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/time1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Класс"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Ученики"
+                android:gravity="center"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="11:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="13:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="15:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="17:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="19:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+        <TableRow
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/time21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="21:00"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/class21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:text="—"
+                android:gravity="center"/>
+
+            <FrameLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bottom_not_active"/>
+
+            <TextView
+                android:id="@+id/students21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical|start"/>
+
+        </TableRow>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_not_active"
+            android:layout_marginHorizontal="5dp"/>
+
+    </TableLayout>
+
+</RelativeLayout>

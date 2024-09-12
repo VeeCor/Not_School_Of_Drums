@@ -105,8 +105,8 @@
 
 
     <string name="simp_text">Из БД</string>
-    <string name="date_simple">08 января 2000</string>
-    <string name="time_simple">Понедельник в 15:00</string>
+    <string name="date_simple">Дата</string>
+    <string name="time_simple">День недели/время</string>
     <string name="teacher_simple">Имя Фамилия</string>
     <string name="student_simple">Имя Фамилия Отчество</string>
     <string name="datetime">01.01.2000 21:11</string>

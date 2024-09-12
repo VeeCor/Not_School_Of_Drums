@@ -77,4 +77,20 @@
         android:textAppearance="@style/Theme.MaterialComponents"
         android:layout_alignParentBottom="true"/>
 
+    <FrameLayout
+        android:id="@+id/rep_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@color/progress_back"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
 </RelativeLayout>

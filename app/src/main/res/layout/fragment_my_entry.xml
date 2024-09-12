@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/refresh"
     tools:context=".Fragments.ActiveEntry">
 
-    <TextView
-        android:id="@+id/no_entries"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/no_entries"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@color/Background"
-        android:layout_below="@+id/no_entries">
+        <TextView
+            android:id="@+id/no_entries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_entries"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentTop="true"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_my_entry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/Background"
+            android:layout_below="@+id/no_entries"
+            android:paddingVertical="5dp">
 
-</RelativeLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -9,9 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.notschoolofdrums.Fragments.AddEntryStep1;
 import com.example.notschoolofdrums.Fragments.AddLessonEntry;
+import com.example.notschoolofdrums.Fragments.AddRepetitionEntry;
 import com.example.notschoolofdrums.R;
 
-public class AddEntryActivity extends AppCompatActivity implements AddLessonEntry.OnFinishButtonClickListener {
+public class AddEntryActivity extends AppCompatActivity implements AddLessonEntry.OnFinishButtonClickListener, AddRepetitionEntry.OnFinishButtonClickListener {
 
     Toolbar toolbar;
 
