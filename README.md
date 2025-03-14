@@ -1,0 +1,8 @@
+![Авторизация](https://github.com/user-attachments/assets/74a70b5b-8009-48fc-bd35-81f5e15c558b)
+![Выбор аккаунта](https://github.com/user-attachments/assets/9e361fc0-5424-4e6d-8319-1afea3b7363a)
+![image](https://github.com/user-attachments/assets/59849d66-f0fe-4e99-91a1-b0b47f5e9541)
+![image](https://github.com/user-attachments/assets/caed451d-4911-417d-a93a-7a2ff38239b2)
+![image](https://github.com/user-attachments/assets/4164a818-d055-476a-a9fd-6d0ab560c3fd)
+![image](https://github.com/user-attachments/assets/918f31cd-da32-48c6-8464-134aa878097b)
+![image](https://github.com/user-attachments/assets/35d00d6a-e15f-43ac-bf19-edb52f94ff55)
+![image](https://github.com/user-attachments/assets/0e3ae489-9ec1-4d76-9b30-28314cec341e)
